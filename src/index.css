@@ -1,0 +1,14 @@
+body, html, #root{
+  margin: 0;
+  height: 100%;
+  background: -webkit-linear-gradient(top, rgba(135,224,253,1) 0%,rgba(79,143,226,1) 40%,rgba(135,7,239,1) 100%);
+}
+
+.box{
+    border: grey solid 1px;
+    box-shadow: 5px 5px 10px;
+    border-radius: 10px;
+    display: inline-block;
+    padding: 10px;
+    margin: 10px;
+}

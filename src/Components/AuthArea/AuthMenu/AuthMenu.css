@@ -1,0 +1,9 @@
+.AuthMenu {
+    position: absolute;
+    left: 10px;
+    top: 70px;
+    font-size: 20px;
+}
+.AuthMenu a{
+    border: 10px;
+}

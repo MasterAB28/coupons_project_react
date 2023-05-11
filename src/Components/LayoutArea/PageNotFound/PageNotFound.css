@@ -1,0 +1,7 @@
+.PageNotFound {
+	text-align: center;
+}
+
+.PageNotFound>img{
+    width: 50%;
+}
