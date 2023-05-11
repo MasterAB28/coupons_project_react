@@ -12,6 +12,7 @@ class Coupon {
     price:number;
     imageName:string;
     image: File|FileList;
+    
     constructor(id:number,company:Company,category:string, title:string, description:string, startDate:Date, 
         endDate:Date, amount:number, price:number,imageName:string, image: File|FileList){
             this.id=id;
