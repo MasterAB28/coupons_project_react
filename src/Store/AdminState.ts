@@ -20,7 +20,7 @@ export interface AdminAction{
 export function fetchCustomers(customers:Customer[]){
     return{type:AdminActionTypes.FetchCustomers,payload:customers}
 }
-export function addCus(customer:Customer){
+export function addCustomer(customer:Customer){
     return{type:AdminActionTypes.AddCustomer,payload:customer}
 }
 export function updateCustomer(customer:Customer){
