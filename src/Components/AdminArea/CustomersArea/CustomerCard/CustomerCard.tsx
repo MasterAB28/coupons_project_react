@@ -1,4 +1,4 @@
-import Customer from "../../../Models/Customer";
+import Customer from "../../../../Models/Customer";
 import "./CustomerCard.css";
 
 interface CustomerProps{

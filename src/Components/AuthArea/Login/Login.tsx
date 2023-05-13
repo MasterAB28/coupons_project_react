@@ -9,7 +9,7 @@ import { useNavigate  } from "react-router-dom";
 
 function Login(): JSX.Element {
 
-    const {register, handleSubmit} = useForm<LoginReq>();
+    const {register, handleSubmit,formState} = useForm<LoginReq>();
     const navigate = useNavigate();
 
     function send(LoginReq:LoginReq){
@@ -27,9 +27,10 @@ function Login(): JSX.Element {
                 })} />
                 <br />
                 <label htmlFor="password"></label>
-                <input type="password" id="password" placeholder="password"  {...register("password")} />
-                <br/>
-                <select id="clientType"  {...register("clientType", {
+                <input type="password" id="password" placeholder="password"  {...register("password",
+                {required:{value:true, message:"password is rquired"} })} /><br/>{}
+                <span>{formState.errors?.password?.message}</span><br/>
+                <select id="clientType" placeholder="Choose your client type"  {...register("clientType", {
                     required: { value: true, message: "clientType is required" }
                 })}>
                     <option value="Administrator">Administrator</option>
