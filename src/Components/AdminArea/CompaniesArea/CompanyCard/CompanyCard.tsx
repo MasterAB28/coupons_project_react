@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Company from "../../../../Models/Company";
 import "./CompanyCard.css";
 import AdminService from "../../../../Services/AdminService";
@@ -13,6 +13,7 @@ function CompanyCard(props: CompanyProp): JSX.Element {
     const [show,setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const navigate = useNavigate();
 
     function deleteCompany(){
         new AdminService().deleteCompany(props.company.id)
@@ -23,6 +24,9 @@ function CompanyCard(props: CompanyProp): JSX.Element {
         })
         .catch(error => notificationService.error(error))
     }
+    function updateCompany(){
+        navigate("/company/edit/" + props.company.id);
+    }
     return (
         <div className="CompanyCard">
             <NavLink to={"/company/"+props.company.id}>
@@ -31,6 +35,7 @@ function CompanyCard(props: CompanyProp): JSX.Element {
             <p>email: {props.company.email}<br/></p>
             <p>password: {props.company.password}</p>
             <Button variant="danger" onClick={handleShow}>DELETE</Button>
+            <Button variant="warning" onClick={updateCompany}>EDIT</Button>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>

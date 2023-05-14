@@ -14,6 +14,12 @@ function CustomerDetails(): JSX.Element {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    useEffect(()=>{
+        new AdminService().getCustomer(id)
+        .then(c=>setCustomer(c))
+        .catch(error=>notificationService.error(error))
+    },[])
+   
     function deleteCustomer(){
         new AdminService().deleteCustomer(id)
         .then(()=>{
@@ -23,16 +29,15 @@ function CustomerDetails(): JSX.Element {
         })
         .catch(error => notificationService.error(error))
     }
-    useEffect(()=>{
-        new AdminService().getCustomer(id)
-        .then(c=>setCustomer(c))
-        .catch(error=>notificationService.error(error))
-    },[])
+    function updateCustomer(){
+        navigate("/customer/edit/"+id)
+    }
     return (
         <div className="CustomerDetails">
 			<h1>{customer?.firstName} {customer?.lastName}</h1><br/>
             <h2>{customer?.email}</h2>
             <Button variant="danger" onClick={handleShow}>DELETE</Button>
+            <Button variant="warning" onClick={updateCustomer}>EDIT</Button>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>

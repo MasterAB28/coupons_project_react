@@ -15,6 +15,7 @@ function CustomerCard(props: CustomerProps): JSX.Element {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const navigate = useNavigate();
 
     function deleteCustomer(){
         new AdminService().deleteCustomer(props.customer.id)
@@ -25,6 +26,9 @@ function CustomerCard(props: CustomerProps): JSX.Element {
         })
         .catch(error => notificationService.error(error))
     }
+    function updateCustomer(){
+        navigate("/customer/edit/"+props.customer.id)
+    }
     return (
         <div className="CustomerCard">
             <NavLink to={"/customer/"+props.customer.id}>
@@ -34,6 +38,7 @@ function CustomerCard(props: CustomerProps): JSX.Element {
             <p>Password: {props.customer.password}</p>
             <p>coupons: {props.customer.coupons?.map( c=> c.title)} </p>
             <Button variant="danger" onClick={handleShow}>DELETE</Button>
+            <Button variant="warning" onClick={updateCustomer}>EDIT</Button>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
