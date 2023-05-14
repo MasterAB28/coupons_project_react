@@ -13,7 +13,7 @@ class AdminService{
         return adminStore.getState().companies;
     }
     public async getCompany(id: number){
-        const response = (await axios.get<Company>('http://localhost:8080/admin/company/'+id)).data
+        const response = await (await axios.get<Company>('http://localhost:8080/admin/company/'+id)).data;
         return response;
     }
     
@@ -41,8 +41,8 @@ class AdminService{
         return adminStore.getState().customers;
     }
     public async getCustomer(id: number){
-        const response = (await axios.get<Customer>('http://localhost:8080/admin/customer/'+id)).data
-        return response;
+        const response = await axios.get<Customer>('http://localhost:8080/admin/customer/'+id);
+        return response.data;
     }
     public async addCustomer(customer:Customer){
         const response = (await axios.post<Customer>('http://localhost:8080/admin/customer',customer)).data;

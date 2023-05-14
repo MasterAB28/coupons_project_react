@@ -9,7 +9,7 @@ class AuthService{
     }
 
     public async logout(){
-        // await axios.post<string>("http://localhost:8080/auth/logout");
+        await axios.post<string>("http://localhost:8080/auth/logout/"+authStore.getState().token);
         authStore.dispatch(logout())
     }
 }

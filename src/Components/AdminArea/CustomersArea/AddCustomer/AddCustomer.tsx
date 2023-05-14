@@ -12,18 +12,17 @@ function AddCustomer(): JSX.Element {
     const navigate = useNavigate();
 
     function sendCustomer(customer:Customer){
-        customer.coupons = [];
         new AdminService().addCustomer(customer)
          .then(newCus=>{
             notificationService.success("Customer added!");
-            navigate("/customer"+newCus.id)
+            navigate("/customer/"+newCus.id);
          })
          .catch(error=> notificationService.error(error))
     }
 
     return (
         <div className="AddCustomer">
-			<Form onSubmit={handleSubmit(sendCustomer)}>
+			<form onSubmit={handleSubmit(sendCustomer)}>
                 <h2>Add new customer</h2>
                 <input type="text" placeholder="Enter first name here" {...register("firstName",{
                     required:{value:true, message:"you must enter first name"},
@@ -35,8 +34,16 @@ function AddCustomer(): JSX.Element {
                     minLength: {value:2, message:"You must entet at least 2 characters"}
                 })}/><br/>{}
                 <span>{formState.errors?.lastName?.message}</span><br/>
-                
-            </Form>
+                <input type={"email"} placeholder="Enter email here" {...register("email",{
+                    required:{value:true , message:"you must enter email"}
+                })}/><br/>{}
+                <span>{formState.errors?.email?.message}</span><br/>
+                <input type={"password"} placeholder="Enter password here" {...register("password",{
+                    required:{value:true,message:"You must enter password"}
+                })}/><br/>{}
+                <span>{formState.errors?.password?.message}</span>
+                <input type={"submit"} value="Add"/>
+            </form>
         </div>
     );
 }

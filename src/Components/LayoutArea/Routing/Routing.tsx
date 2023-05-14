@@ -7,6 +7,8 @@ import Customers from "../../AdminArea/CustomersArea/Customers/Customers";
 import Companies from "../../AdminArea/CompaniesArea/Companies/Companies";
 import AddCustomer from "../../AdminArea/CustomersArea/AddCustomer/AddCustomer";
 import AddCompany from "../../AdminArea/CompaniesArea/AddCompany/AddCompany";
+import CustomerDetails from "../../AdminArea/CustomersArea/CustomerDetails/CustomerDetails";
+import CompanyDetails from "../../AdminArea/CompaniesArea/CompanyDetails/CompanyDetails";
 
 function Routing(): JSX.Element {
     return (
@@ -16,8 +18,10 @@ function Routing(): JSX.Element {
                 <Route path="/login" element={<Login />} />
                 <Route path="/customers" element={<Customers/>} />
                 <Route path="/customer/add" element={<AddCustomer/>}/>
+                <Route path="/customer/:cusId" element={<CustomerDetails/>}/>
                 <Route path="/companies" element={<Companies/>} />
                 <Route path="/company/add" element={<AddCompany/>}/>
+                <Route path="/company/:compId" element={<CompanyDetails/>}/>
                 <Route path="/" element={<Navigate to="/home"/>} />
                 <Route path="*" element={<PageNotFound/>} />
             </Routes>
