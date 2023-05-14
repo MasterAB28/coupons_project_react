@@ -18,6 +18,7 @@ function Customers(): JSX.Element {
         } )
         .catch (error => notificationService.error(error))
     })
+   
 
     return (
         <div className="Customers">
