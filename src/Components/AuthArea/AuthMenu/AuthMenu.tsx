@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import authService from "../../../Services/AuthService";
 import { authStore } from "../../../Store/AuthState";
 import { useEffect, useState } from "react";
+import AutoLogout from "../AutoLogout/AutoLogout";
 
 
 function AuthMenu(): JSX.Element {
@@ -26,6 +27,7 @@ function AuthMenu(): JSX.Element {
             }
         ).catch();
     }
+    
 
     return (
         <div className="AuthMenu">
@@ -36,6 +38,7 @@ function AuthMenu(): JSX.Element {
                 </> ||
                 <>
                     Hello {authStore.getState().name} <button onClick={logout}>Logout</button>
+                    <AutoLogout/>
                 </>
             }
 			

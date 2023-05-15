@@ -1,9 +1,11 @@
 import { createStore } from "redux";
 import Coupon from "../Models/Coupon";
+import Company from "../Models/Company";
 
 // 1. the state - array of Coupons
 export class CompanyState{
     public coupons: Coupon[]=[];
+    public company: Company;
 }
 // 2. a list of Action Types
 export enum CompanyActionTypes{
@@ -14,18 +16,22 @@ export interface CouponsAction{
     type:CompanyActionTypes,
     payload:any
 }
+
 // 4. helper functions to create above interface instances
-export function FetchCoupons(coupons:Coupon[]){
+export function fetchCoupons(coupons:Coupon[]){
     return{type:CompanyActionTypes.FetchCoupons,payload:coupons}
 }
-export function AddCoupon(coupon:Coupon){
+export function addCoupon(coupon:Coupon){
     return{type:CompanyActionTypes.AddCoupon,payload:coupon}
 }
-export function UpdateCoupon(coupon:Coupon){
+export function updateCoupon(coupon:Coupon){
     return{type:CompanyActionTypes.UpdateCoupon,payload:coupon}
 }
-export function DeleteCoupon(id:number){
+export function deleteCoupon(id:number){
     return {type:CompanyActionTypes.DeleteCoupon,payload:id}
+}
+export function companyDetails(comapny:Company){
+    return {type:CompanyActionTypes.CompanyDetails,payload:comapny}
 }
 
 // 5. Reducer - the logic for each Action
@@ -50,8 +56,10 @@ function couponReducer(currentState=new CompanyState(),action:CouponsAction){
             if (index>=0)
                     newState.coupons.splice(index,1);
             break;
-        
+        case CompanyActionTypes.CompanyDetails:
+            newState.company = action.payload;
+            break;
     }
     return newState;
 }
-export const couponsStore = createStore(couponReducer);
+export const companyStore = createStore(couponReducer);

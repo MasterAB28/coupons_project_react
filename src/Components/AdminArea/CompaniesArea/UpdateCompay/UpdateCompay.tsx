@@ -36,10 +36,10 @@ function UpdateCompay(): JSX.Element {
         <div className="UpdateCompay">
 				<form onSubmit={handleSubmit(sendCompany)}>
                 <h2>Update Company:</h2>
-                <input type="text"  disabled {...register("email")} /><br/> {/* ... is called 'spread operator'  */}
-              
                 <input type="text"  disabled {...register("name")} /><br/>
-                
+                <input type="email"   {...register("email", {
+                required:{value: true, message:"You must enter email"}
+                })} /><br/> 
                 <input type="password"  placeholder="Enter password here" {...register("password", {
                             required:{ value:true, message: "You must enter password"}
                         })} /><br/>
