@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import authService from "../../../Services/AuthService";
 import { authStore } from "../../../Store/AuthState";
 import { useEffect, useState } from "react";
-import AutoLogout from "../AutoLogout/AutoLogout";
+import notificationService from "../../../Services/NotificationService";
 
 
 function AuthMenu(): JSX.Element {
@@ -25,7 +25,7 @@ function AuthMenu(): JSX.Element {
             ()=>{
                 navigate("/login");
             }
-        ).catch();
+        ).catch(error=> notificationService.error(error));
     }
     
 
@@ -37,8 +37,7 @@ function AuthMenu(): JSX.Element {
                     <NavLink to={"/login"}>Login</NavLink>
                 </> ||
                 <>
-                    Hello {authStore.getState().name} <button onClick={logout}>Logout</button>
-                    <AutoLogout/>
+                    Hello {authStore.getState().name} <button onClick={logout}>Logout</button> 
                 </>
             }
 			

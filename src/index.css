@@ -12,3 +12,8 @@ body, html, #root{
     padding: 10px;
     margin: 10px;
 }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -32,7 +32,7 @@ export function loginAction(token: string){
     return {type: AuthActionTypes.Login, payload: token}
 }
 
-export function logout(){
+export function logoutAction(){
     return { type: AuthActionTypes.Logout}
 }
 
