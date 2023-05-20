@@ -13,11 +13,11 @@ class NotificationService{
             toast.error(err);
             } else if(err.response?.data){ 
             toast.error(err.response.data);
-            wait(3000)
-                if (err.response.status == 401){
+                if (err.response.status === 401){
                     localStorage.removeItem('token');
                     window.location.href = '/login';
-            }} else {                                          
+            }
+        } else {                                          
             toast.error(err.message);
         }        
         

@@ -13,10 +13,13 @@ function Menu(): JSX.Element {
     return (
         <div className="Menu">
 			<NavLink to="/home">Home</NavLink><br/>
-            { authStore.getState().token && authStore.getState().clientType == "Administrator" &&
+            { authStore.getState().token && authStore.getState().clientType === "Administrator" &&
                 <><NavLink to="/customers">Customers</NavLink><br/></> }
-                { authStore.getState().token && authStore.getState().clientType == "Administrator" &&
+            { authStore.getState().token && authStore.getState().clientType === "Administrator" &&
                 <><NavLink to="/companies">Companies</NavLink></> }
+            { authStore.getState().token && authStore.getState().clientType === "Company" &&
+                <><NavLink to={"/coupons"}>Company Coupons</NavLink></>}
+                
         </div>
     );
 }

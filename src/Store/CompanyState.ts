@@ -46,13 +46,13 @@ function couponReducer(currentState=new CompanyState(),action:CouponsAction){
             break;
         case CompanyActionTypes.UpdateCoupon:
             const coupId=action.payload.id;
-            const coupIndex=newState.coupons.findIndex(c=>c.id==coupId);
+            const coupIndex=newState.coupons.findIndex(c=>c.id===coupId);
             if(coupIndex>=0)
                 newState.coupons[coupIndex]=action.payload;
             break;
         case CompanyActionTypes.DeleteCoupon:
             const id=action.payload; // payload is number
-            const index=newState.coupons.findIndex(c=>c.id==id);
+            const index=newState.coupons.findIndex(c=>c.id===id);
             if (index>=0)
                     newState.coupons.splice(index,1);
             break;

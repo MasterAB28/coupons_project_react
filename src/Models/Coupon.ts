@@ -11,10 +11,10 @@ class Coupon {
     amount:number;
     price:number;
     imageName:string;
-    image: File|FileList;
+    image: string;
     
     constructor(id:number,company:Company,category:string, title:string, description:string, startDate:Date, 
-        endDate:Date, amount:number, price:number,imageName:string, image: File|FileList){
+        endDate:Date, amount:number, price:number,imageName:string){
             this.id=id;
             this.company=company;
             this.category=category;
@@ -25,7 +25,6 @@ class Coupon {
             this.amount=amount;
             this.price=price;
             this.imageName=imageName;
-            this.image=image;
         }
 }
 
