@@ -19,7 +19,7 @@ function CompanyCard(props: CompanyProp): JSX.Element {
         new AdminService().deleteCompany(props.company.id)
         .then(()=>{
             handleClose();
-            notificationService.success("Customer deleted!");
+            notificationService.success("Company deleted!");
             window.location.reload();
         })
         .catch(error => notificationService.error(error))

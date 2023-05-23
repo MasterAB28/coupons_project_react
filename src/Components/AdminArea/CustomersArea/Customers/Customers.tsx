@@ -17,7 +17,7 @@ function Customers(): JSX.Element {
             setCustomers(customers)
         } )
         .catch (error => notificationService.error(error))
-    })
+    },[])
    
 
     return (

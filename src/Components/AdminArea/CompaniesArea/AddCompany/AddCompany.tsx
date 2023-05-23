@@ -10,9 +10,9 @@ function AddCompany(): JSX.Element {
     const navigate=useNavigate();
     function sendCompany(company:Company){
        new AdminService().addCompany(company)
-       .then(newcomp=>{
-        notificationService.success("company added!");
-        navigate("/company/"+newcomp.id);
+       .then(newComp=>{
+        notificationService.success("Company added!");
+        navigate("/company/"+newComp.id);
        } )
        .catch(err=>{
         notificationService.error(err);

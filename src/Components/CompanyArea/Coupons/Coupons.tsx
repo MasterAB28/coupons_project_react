@@ -17,7 +17,7 @@ function Coupons(): JSX.Element {
         setCoupons(coupons);
     })
     .catch(err=>(notificationService.error(err)))
-    })
+    },[])
 
     return (
         <div className="Coupons">

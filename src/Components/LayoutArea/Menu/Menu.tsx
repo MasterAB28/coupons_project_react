@@ -19,6 +19,9 @@ function Menu(): JSX.Element {
                 <><NavLink to="/companies">Companies</NavLink></> }
             { authStore.getState().token && authStore.getState().clientType === "Company" &&
                 <><NavLink to={"/coupons"}>Company Coupons</NavLink></>}
+            { authStore.getState().token && authStore.getState().clientType === "Company" &&
+                <><NavLink to={"/companyDetails"}>Your company details</NavLink></>}
+
                 
         </div>
     );

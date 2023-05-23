@@ -6,32 +6,35 @@ import Company from "../Models/Company";
 class CompanyService{
     public async getAllCompanyCoupons(){
         if(companyStore.getState().coupons.length == 0){
-            const respone = (await axios.get<Coupon[]>("http://localhost:8080/company/coupon")).data;
-            companyStore.dispatch(fetchCoupons(respone));
-            return respone;
+            const response = (await axios.get<Coupon[]>("http://localhost:8080/company/coupon")).data;
+            companyStore.dispatch(fetchCoupons(response));
+            return response;
         }
         return companyStore.getState().coupons;
     }
     public async addCoupon(coupon:Coupon){
-        const respone = (await axios.post<Coupon>("http://localhost:8080/company/coupon",coupon)).data;
-        companyStore.dispatch(addCoupon(respone));
-        return respone;
+        const response = (await axios.post<Coupon>("http://localhost:8080/company/coupon",coupon)).data;
+        companyStore.dispatch(addCoupon(response));
+        return response;
     }
     public async updateCoupon(coupon:Coupon){
-        const respone = (await axios.put<Coupon>("http://localhost:8080/company/coupon",coupon)).data;
-        companyStore.dispatch(updateCoupon(respone));
-        return respone;
+        const response = (await axios.put<Coupon>("http://localhost:8080/company/coupon",coupon)).data;
+        companyStore.dispatch(updateCoupon(response));
+        return response;
     }
     public async deleteCoupon(id:number){
-        const respone = (await axios.delete<Coupon>("http://localhost:8080/company/coupon"+id)).data;
+        const response = (await axios.delete<Coupon>("http://localhost:8080/company/coupon/"+id)).data;
         companyStore.dispatch(deleteCoupon(id));
-        return respone;
+        return response;
     }
-    public async compnayDetails(){
+    public async getCoupon(id:number){
+
+    }
+    public async companyDetails(){
         if(companyStore.getState().company === undefined){
-            const respone = (await axios.get<Company>("http://localhost:8080/company/details")).data;
-            companyStore.dispatch(companyDetails(respone))
-            return respone;
+            const response = (await axios.get<Company>("http://localhost:8080/company/details")).data;
+            companyStore.dispatch(companyDetails(response))
+            return response;
         }
         return companyStore.getState().company;
     }

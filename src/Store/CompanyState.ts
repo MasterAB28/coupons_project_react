@@ -30,8 +30,8 @@ export function updateCoupon(coupon:Coupon){
 export function deleteCoupon(id:number){
     return {type:CompanyActionTypes.DeleteCoupon,payload:id}
 }
-export function companyDetails(comapny:Company){
-    return {type:CompanyActionTypes.CompanyDetails,payload:comapny}
+export function companyDetails(company:Company){
+    return {type:CompanyActionTypes.CompanyDetails,payload:company}
 }
 
 // 5. Reducer - the logic for each Action

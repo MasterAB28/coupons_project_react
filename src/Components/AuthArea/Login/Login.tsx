@@ -33,7 +33,7 @@ function Login(): JSX.Element {
                 <br />
                 <label htmlFor="password"></label>
                 <input type="password" id="password" placeholder="password"  {...register("password",
-                {required:{value:true, message:"password is rquired"} })} /><br/>{}
+                {required:{value:true, message:"password is required"} })} /><br/>{}
                 <span>{formState.errors?.password?.message}</span><br/>
                 <select id="clientType"  defaultValue={value} onChange={handleChange} {...register("clientType", {
                     required: { value: true, message: "clientType is required" }

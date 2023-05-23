@@ -9,10 +9,12 @@ import AddCustomer from "../../AdminArea/CustomersArea/AddCustomer/AddCustomer";
 import AddCompany from "../../AdminArea/CompaniesArea/AddCompany/AddCompany";
 import CustomerDetails from "../../AdminArea/CustomersArea/CustomerDetails/CustomerDetails";
 import CompanyDetails from "../../AdminArea/CompaniesArea/CompanyDetails/CompanyDetails";
-import UpdateCompay from "../../AdminArea/CompaniesArea/UpdateCompay/UpdateCompay";
 import UpdateCustomer from "../../AdminArea/CustomersArea/UpdateCustomer/UpdateCustomer";
 import Coupons from "../../CompanyArea/Coupons/Coupons";
 import AddCoupon from "../../CompanyArea/AddCoupon/AddCoupon";
+import UpdateCompany from "../../AdminArea/CompaniesArea/UpdateCompay/UpdateCompany";
+import UpdateCoupon from "../../CompanyArea/UpdateCoupon/UpdateCoupon";
+import DetailsOfCompanyLogin from "../../CompanyArea/DetailsOfCompanyLogin/DetailsOfCompanyLogin";
 
 function Routing(): JSX.Element {
     return (
@@ -27,9 +29,11 @@ function Routing(): JSX.Element {
                 <Route path="/companies" element={<Companies/>} />
                 <Route path="/company/add" element={<AddCompany/>}/>
                 <Route path="/company/:compId" element={<CompanyDetails/>}/>
-                <Route path="/company/edit/:compId" element={<UpdateCompay/>}/>
+                <Route path="/company/edit/:compId" element={<UpdateCompany/>}/>
                 <Route path="/coupons" element={<Coupons/>}/>
                 <Route path="/coupon/add" element={<AddCoupon/>}/>
+                <Route path="/coupon/edit/:copId" element={<UpdateCoupon/>}/>
+                <Route path={"/companyDetails"} element={<DetailsOfCompanyLogin/>}/>
                 <Route path="/" element={<Navigate to="/home"/>} />
                 <Route path="*" element={<PageNotFound/>} />
             </Routes>

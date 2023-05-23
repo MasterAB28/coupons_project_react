@@ -16,7 +16,7 @@ function Companies(): JSX.Element {
             setCompanies(companies)
         } )
         .catch (error => notificationService.error(error))
-    })
+    },[])
     return (
         <div className="Companies">
             <div className="addBtn">

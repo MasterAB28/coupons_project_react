@@ -9,7 +9,6 @@ import notificationService from "../../../../Services/NotificationService";
 function UpdateCustomer(): JSX.Element {
     const {register, handleSubmit, formState, setValue} = useForm<Customer>();
     const id:number=+useParams().cusId;
-    const [customer,setCustomer]=useState<Customer>();
     const navigate = useNavigate();
     
     useEffect(()=>{
@@ -21,7 +20,7 @@ function UpdateCustomer(): JSX.Element {
             setValue("password", c.password);
             setValue("coupons", c.coupons);
         }).catch(error=>notificationService.error(error))
-    })
+    },[])
     function sendCustomer(customer:Customer){
         customer.id = id;
         new AdminService().updateCustomer(customer)

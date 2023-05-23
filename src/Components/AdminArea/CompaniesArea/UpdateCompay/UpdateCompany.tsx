@@ -1,17 +1,15 @@
 import { Form, useNavigate, useParams } from "react-router-dom";
-import "./UpdateCompay.css";
+import "./UpdateCompany.css";
 import { useEffect, useState } from "react";
 import Company from "../../../../Models/Company";
 import AdminService from "../../../../Services/AdminService";
 import { useForm } from "react-hook-form";
 import notificationService from "../../../../Services/NotificationService";
-import { error } from "console";
 
-function UpdateCompay(): JSX.Element {
+function UpdateCompany(): JSX.Element {
 
     const {register, handleSubmit, formState, setValue} = useForm<Company>();
     const id:number=+useParams().compId;
-    const [company,setCompany]=useState<Company>();
     const navigate = useNavigate();
     
     useEffect(()=>{
@@ -21,7 +19,7 @@ function UpdateCompay(): JSX.Element {
             setValue("email", c.email);
             setValue("password", c.password);
         })
-    })
+    },[])
     function sendCompany(company:Company){
         company.id = id;
         new AdminService().updateCompany(company)
@@ -33,7 +31,7 @@ function UpdateCompay(): JSX.Element {
     }
     
     return (
-        <div className="UpdateCompay">
+        <div className="UpdateCompany">
 				<form onSubmit={handleSubmit(sendCompany)}>
                 <h2>Update Company:</h2>
                 <input type="text"  disabled {...register("name")} /><br/>
@@ -50,4 +48,4 @@ function UpdateCompay(): JSX.Element {
     );
 }
 
-export default UpdateCompay;
+export default UpdateCompany;
