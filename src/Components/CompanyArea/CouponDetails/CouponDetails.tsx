@@ -1,24 +1,22 @@
-import Coupon from "../../../Models/Coupon";
-import "./CouponCard.css";
-import {useState} from "react";
-import {NavLink, useNavigate} from "react-router-dom";
-import notificationService from "../../../Services/NotificationService";
+import "./CouponDetails.css";
+import {useEffect, useState} from "react";
+import {NavLink, useNavigate, useParams} from "react-router-dom";
 import CompanyService from "../../../Services/CompanyService";
+import notificationService from "../../../Services/NotificationService";
+import Coupon from "../../../Models/Coupon";
 import {Button, Modal} from "react-bootstrap";
-import coupon from "../../../Models/Coupon";
-interface CouponProp{
-    coupon : Coupon;
-}
 
-
-function CouponCard(props : CouponProp): JSX.Element {
+function CouponDetails(): JSX.Element {
+    const [coupon, setCoupon] = useState<Coupon>();
+    const id:number =+ useParams().copId;
     const [show,setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const navigate = useNavigate();
 
+
     function deleteCoupon(){
-        new CompanyService().deleteCoupon(props.coupon.id)
+        new CompanyService().deleteCoupon(id)
             .then(()=>{
                 handleClose();
                 notificationService.success("coupon deleted!");
@@ -27,14 +25,19 @@ function CouponCard(props : CouponProp): JSX.Element {
             .catch(error => notificationService.error(error))
     }
     function updateCoupon(){
-        navigate("/coupon/edit/" + props.coupon.id);
+        navigate("/coupon/edit/" + id);
     }
+    useEffect(()=>{
+        new CompanyService().getCoupon(id)
+            .then(c=>setCoupon(c))
+            .catch(err=> notificationService.error(err))
+    },[])
     return (
-        <div className="CouponCard">
-            <NavLink to={"/coupons/"+props.coupon.id}>
-			{props.coupon.title}<br/>
+        <div className="CouponDetails">
+            <NavLink to={"/coupons/"+coupon?.id}>
+                {coupon?.title}<br/>
             </NavLink>
-            <img src={props.coupon.image} alt={props.coupon.title} /><br/>
+            <img src={coupon?.image} alt={coupon?.title} /><br/>
             <Button variant="danger" onClick={handleShow}>DELETE</Button>
             <Button variant="warning" onClick={updateCoupon}>EDIT</Button>
 
@@ -42,7 +45,7 @@ function CouponCard(props : CouponProp): JSX.Element {
                 <Modal.Header closeButton>
                     <Modal.Title>Warning!</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Are you sure you want to delete {props?.coupon?.title}</Modal.Body>
+                <Modal.Body>Are you sure you want to delete {coupon?.title}</Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         No
@@ -56,4 +59,4 @@ function CouponCard(props : CouponProp): JSX.Element {
     );
 }
 
-export default CouponCard;
+export default CouponDetails;

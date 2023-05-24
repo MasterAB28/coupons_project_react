@@ -24,9 +24,9 @@ function UpdateCustomer(): JSX.Element {
     function sendCustomer(customer:Customer){
         customer.id = id;
         new AdminService().updateCustomer(customer)
-        .then(newComp=>{
+        .then(newCus=>{
             notificationService.success("customer update");
-            navigate("/customer/"+newComp.id)
+            navigate("/customer/"+newCus.id)
         })
         .catch(error=> notificationService.error(error))
     }
@@ -37,7 +37,7 @@ function UpdateCustomer(): JSX.Element {
                 <h2>Update customer:</h2>
                 <input type="text" placeholder="Enter first name here" {...register("firstName",{
                     required:{value:true, message:"you must enter first name"},
-                    minLength: {value:2, message:"You must entet at least 2 characters"}
+                    minLength: {value:2, message:"You must enter at least 2 characters"}
                 })}/><br/>{}
                 <span>{formState.errors?.firstName?.message}</span><br/>
                 <input type="text" placeholder="Enter last name here" {...register("lastName",{

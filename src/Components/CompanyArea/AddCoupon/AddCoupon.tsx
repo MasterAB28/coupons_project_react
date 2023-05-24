@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import CompanyService from "../../../Services/CompanyService";
 import notificationService from "../../../Services/NotificationService";
 import Categories from "../../../Models/Categories";
-import {SetStateAction, useState} from "react";
+import React, {SetStateAction, useState} from "react";
 
 function AddCoupon(): JSX.Element {
     const {register, handleSubmit , formState} = useForm <Coupon>();
@@ -22,7 +22,7 @@ function AddCoupon(): JSX.Element {
         coupon.image = base64image;
         new CompanyService().addCoupon(coupon)
         .then(newCoupon =>{
-            notificationService.success("Coupon Added");
+            notificationService.success("Coupon " + newCoupon.title + " added!");
             navigate("/coupons")
         })
         .catch(err=> notificationService.error(err))
@@ -81,7 +81,7 @@ function AddCoupon(): JSX.Element {
             min:{value:0,message:"Price must be above than 0"}
             })} /><br/>
             <span>{formState.errors?.price?.message}</span><br/>
-            <input type="file" id="image" name="image" accept="image/*" onChange={handleFileChange}/>
+            <input type="file" id="image" name="image" accept="image/*" onChange={handleFileChange}/><br/>
             <input type="submit" value="Add Coupon" /><br/>
             </form>
         </div>

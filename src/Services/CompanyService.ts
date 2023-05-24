@@ -2,6 +2,7 @@ import { addCoupon, companyDetails, companyStore, deleteCoupon, fetchCoupons, up
 import Coupon from "../Models/Coupon";
 import axios from "axios";
 import Company from "../Models/Company";
+import {adminStore} from "../Store/AdminState";
 
 class CompanyService{
     public async getAllCompanyCoupons(){
@@ -28,7 +29,10 @@ class CompanyService{
         return response;
     }
     public async getCoupon(id:number){
-
+        const coupon = companyStore.getState().coupons.find(c=> c.id === id)
+        if (coupon === undefined)
+            throw Error("coupon not found")
+        return coupon;
     }
     public async companyDetails(){
         if(companyStore.getState().company === undefined){

@@ -18,7 +18,7 @@ function Menu(): JSX.Element {
             { authStore.getState().token && authStore.getState().clientType === "Administrator" &&
                 <><NavLink to="/companies">Companies</NavLink></> }
             { authStore.getState().token && authStore.getState().clientType === "Company" &&
-                <><NavLink to={"/coupons"}>Company Coupons</NavLink></>}
+                <><NavLink to={"/coupons"}>Company Coupons</NavLink><br/></>}
             { authStore.getState().token && authStore.getState().clientType === "Company" &&
                 <><NavLink to={"/companyDetails"}>Your company details</NavLink></>}
 
