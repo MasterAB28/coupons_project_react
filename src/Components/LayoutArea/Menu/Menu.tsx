@@ -9,18 +9,26 @@ function Menu(): JSX.Element {
         const unsubscribe = authStore.subscribe(()=>{
             setToken(authStore.getState().token)
         })
+        return ()=>{
+            unsubscribe();
+        }
     },[])
     return (
         <div className="Menu">
 			<NavLink to="/home">Home</NavLink><br/>
-            { authStore.getState().token && authStore.getState().clientType === "Administrator" &&
-                <><NavLink to="/customers">Customers</NavLink><br/></> }
-            { authStore.getState().token && authStore.getState().clientType === "Administrator" &&
-                <><NavLink to="/companies">Companies</NavLink></> }
-            { authStore.getState().token && authStore.getState().clientType === "Company" &&
-                <><NavLink to={"/coupons"}>Company Coupons</NavLink><br/></>}
-            { authStore.getState().token && authStore.getState().clientType === "Company" &&
-                <><NavLink to={"/companyDetails"}>Your company details</NavLink></>}
+            { authStore.getState().token && authStore.getState().clientType === "Administrator" && <>
+                    <NavLink to="/customers">Customers</NavLink><br/>
+                    <NavLink to="/companies">Companies</NavLink>
+                </> }
+            { authStore.getState().token && authStore.getState().clientType === "Company" && <>
+                    <NavLink to={"/company/coupons"}>Your Coupons</NavLink><br/>
+                    <NavLink to={"/companyDetails"}>Your details</NavLink>
+                </>}
+            { authStore.getState().token && authStore.getState().clientType === "Customer" &&<>
+                <NavLink to={"/coupons"}>Our Coupons</NavLink><br/>
+                <NavLink to={"/customerCoupons"}>Your coupons</NavLink><br/>
+                <NavLink to={"/customerDetails"}>Your details</NavLink>
+            </>}
 
                 
         </div>

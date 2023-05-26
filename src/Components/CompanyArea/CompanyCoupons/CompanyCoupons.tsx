@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import "./Coupons.css";
+import "./CompanyCoupons.css";
 import Coupon from "../../../Models/Coupon";
 import CompanyService from "../../../Services/CompanyService";
 import notificationService from "../../../Services/NotificationService";
-import CouponCard from "../CouponCard/CouponCard";
+import CouponCard from "../../CouponsArea/CouponCard/CouponCard";
 import { NavLink } from "react-router-dom";
 
 
 
-function Coupons(): JSX.Element {
+function CompanyCoupons(): JSX.Element {
     const [getCoupons, setCoupons] = useState<Coupon[]>([]);
 
     useEffect(()=>{
@@ -31,4 +31,4 @@ function Coupons(): JSX.Element {
     );
 }
 
-export default Coupons;
+export default CompanyCoupons;

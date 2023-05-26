@@ -2,7 +2,7 @@ import { createStore } from "redux";
 import Coupon from "../Models/Coupon";
 import Company from "../Models/Company";
 
-// 1. the state - array of Coupons
+// 1. the state - array of CompanyCoupons and Company
 export class CompanyState{
     public coupons: Coupon[]=[];
     public company: Company;
@@ -12,7 +12,7 @@ export enum CompanyActionTypes{
     FetchCoupons, AddCoupon, DeleteCoupon,UpdateCoupon,CompanyDetails
 }
 // 3. wrapper for Action and Value
-export interface CouponsAction{
+export interface CompanyAction{
     type:CompanyActionTypes,
     payload:any
 }
@@ -35,7 +35,7 @@ export function companyDetails(company:Company){
 }
 
 // 5. Reducer - the logic for each Action
-function couponReducer(currentState=new CompanyState(),action:CouponsAction){
+function companyReducer(currentState=new CompanyState(),action:CompanyAction){
     const newState={...currentState};// copy the state to a new instance
     switch(action.type){
         case CompanyActionTypes.FetchCoupons:
@@ -62,4 +62,4 @@ function couponReducer(currentState=new CompanyState(),action:CouponsAction){
     }
     return newState;
 }
-export const companyStore = createStore(couponReducer);
+export const companyStore = createStore(companyReducer);
