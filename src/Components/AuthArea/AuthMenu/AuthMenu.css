@@ -1,8 +1,9 @@
 .AuthMenu {
-    position: absolute;
-    right: 50px;
-    top: 50px;
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 10px;
+    font-size: 20px;
 }
-.AuthMenu a{
-    border: 10px;
+.logout{
+    margin-left: 10px;
 }

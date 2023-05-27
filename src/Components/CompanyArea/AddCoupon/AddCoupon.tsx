@@ -23,7 +23,7 @@ function AddCoupon(): JSX.Element {
         new CompanyService().addCoupon(coupon)
         .then(newCoupon =>{
             notificationService.success("Coupon " + newCoupon.title + " added!");
-            navigate("/coupons")
+            navigate("/company/coupons")
         })
         .catch(err=> notificationService.error(err))
     }

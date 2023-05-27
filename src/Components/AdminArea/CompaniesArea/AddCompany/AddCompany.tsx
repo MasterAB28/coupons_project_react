@@ -21,19 +21,19 @@ function AddCompany(): JSX.Element {
     return (
         <div className="AddCompany">
 				<form onSubmit={handleSubmit(sendCompany)}>
-                <h1>Add new Company</h1>
+                <h3>Add new Company</h3>
                 <input type="text"placeholder="Enter name here"{...register("name",{
                     required:{value:true,message:"Required field"}
                 })} /><br/>
-                <span>{formState.errors?.name?.message}</span><br />
-                <input type="text" placeholder="Enter email here"{...register("email",{
-                    required:{value:true,message:"Required field"}
-                })} /> <br />
-                <span>{formState.errors?.email?.message}</span><br />
-                <input type="text" placeholder="Enter password here"{...register("password",{
+                    {formState.errors?.name?.message && <><span>{formState.errors?.name?.message}</span><br/></>}
+                <input type="email" placeholder="Enter email here"{...register("email",{
                     required:{value:true,message:"Required field"}
                 })} /><br/>
-                <span>{formState.errors?.password?.message}</span><br />
+                    { formState.errors?.email?.message && <><span>{formState.errors?.email?.message}</span><br/></>}
+                <input type="password" placeholder="Enter password here"{...register("password",{
+                    required:{value:true,message:"Required field"}
+                })} /><br/>
+                    {formState.errors?.password?.message && <><span>{formState.errors?.password?.message}</span><br/></>}
                 <button name="add" type="submit">Add Company</button>
 
             </form>

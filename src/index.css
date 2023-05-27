@@ -1,7 +1,8 @@
 body, html, #root{
   margin: 0;
   height: 100%;
-  background: -webkit-linear-gradient(top, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 40%, rgb(255, 255, 255) 100%);
+  background: #e1e1e1;
+    font-family: Calibri;
 }
 
 .box{
@@ -11,18 +12,5 @@ body, html, #root{
     display: inline-block;
     padding: 10px;
     margin: 10px;
-}
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.WebContainer{
-    width: 100%;
-    height: auto;
-}
-.articles{
-    width:90%; /*Takes 90% width from WebContainer*/
-    height: auto;
-    margin: auto;
+    background-color: white;
 }

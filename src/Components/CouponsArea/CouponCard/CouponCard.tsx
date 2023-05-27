@@ -20,20 +20,22 @@ function CouponCard(props : CouponProp): JSX.Element {
     const handleShow = () => setShow(true);
     const navigate = useNavigate();
     const [refresh,setRefresh] = useState(true);
+    const [customerCoupons , setCustomerCoupons] = useState<Coupon[]>([]);
+
 
     function deleteCoupon(){
         new CompanyService().deleteCoupon(props.coupon.id)
             .then(()=>{
                 handleClose();
                 notificationService.success("coupon deleted!");
-                window.location.reload();
+                wait(1000).then(r=>window.location.reload())
             })
             .catch(error => notificationService.error(error))
     }
     function updateCoupon(){
         navigate("/coupon/edit/" + props.coupon.id);
     }
-    const [customerCoupons , setCustomerCoupons] = useState<Coupon[]>([]);
+
 
 
     useEffect(()=>{
@@ -43,14 +45,14 @@ function CouponCard(props : CouponProp): JSX.Element {
                     setCustomerCoupons(coupons)
                 })
                 .catch(err=> notificationService.error(err))
-            setRefresh(false)
+            setRefresh(false);
         }
-    },[])
+    },[refresh])
     function purchaseCoupon(){
         new CustomerService().purchaseCoupon(props.coupon)
             .then(()=>{
                 notificationService.success("Purchase success");
-                navigate("/customerCoupons");
+                setRefresh(true)
             })
             .catch(err=>notificationService.error(err));
     }
@@ -59,15 +61,21 @@ function CouponCard(props : CouponProp): JSX.Element {
             .then(()=>{
                 notificationService.success("Purchase delete success");
                 setRefresh(true)
+                navigate("/coupons")
             })
             .catch(err=>notificationService.error(err));
     }
     return (
-        <div className="CouponCard">
-            <NavLink to={"/coupons/"+props.coupon.id}>
-			{props.coupon.title}<br/>
-            </NavLink>
-            <img src={props.coupon.image} alt={props.coupon.title} /><br/>
+        <div className="CouponCard box">
+            {authStore.getState().clientType === "Company" &&<>Title: <NavLink to={"/coupons/" + props.coupon.id}>{props.coupon.title}<br/></NavLink></>}
+            {authStore.getState().clientType === "Customer" &&<><h4>Title: {props.coupon.title}</h4></>}
+            Description: {props.coupon.description}<br/>
+            Start date: {props.coupon.startDate.toString()}<br/>
+            End date: {props.coupon.endDate.toString()}<br/>
+            Price: {props.coupon.price}<br/>
+            Amount: {props.coupon.amount}<br/>
+            {props.coupon.image &&<><img src={props.coupon.image} alt={props.coupon.title} /><br/></> }
+            {!props.coupon.image && <> <img src={'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png'} alt={props.coupon.title} /><br/></>}
 
             {authStore.getState().clientType === "Customer" && !customerCoupons.some(c=>c.id === props.coupon.id) && <>
                 <Button variant={"success"} onClick={purchaseCoupon}>Purchase coupon</Button>

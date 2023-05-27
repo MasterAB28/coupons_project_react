@@ -39,20 +39,20 @@ function UpdateCustomer(): JSX.Element {
                     required:{value:true, message:"you must enter first name"},
                     minLength: {value:2, message:"You must enter at least 2 characters"}
                 })}/><br/>{}
-                <span>{formState.errors?.firstName?.message}</span><br/>
+                {formState.errors?.firstName?.message && <><span>{formState.errors?.firstName?.message}</span><br/></>}
                 <input type="text" placeholder="Enter last name here" {...register("lastName",{
                     required:{value:true, message:"you must enter last name"},
-                    minLength: {value:2, message:"You must entet at least 2 characters"}
+                    minLength: {value:2, message:"You must enter at least 2 characters"}
                 })}/><br/>{}
-                <span>{formState.errors?.lastName?.message}</span><br/>
+                {formState.errors?.lastName?.message && <> <span>{formState.errors?.lastName?.message}</span><br/> </>}
                 <input type={"email"} placeholder="Enter email here" {...register("email",{
                     required:{value:true , message:"you must enter email"}
                 })}/><br/>{}
-                <span>{formState.errors?.email?.message}</span><br/>
+                {formState.errors?.email?.message && <><span>{formState.errors?.email?.message}</span><br/></>}
                 <input type={"password"} placeholder="Enter password here" {...register("password",{
                     required:{value:true,message:"You must enter password"}
                 })}/><br/>{}
-                <span>{formState.errors?.password?.message}</span>
+                {formState.errors?.password?.message && <><span>{formState.errors?.password?.message}</span><br/> </>}
                 <input type="submit" value="update"/>
             </form>
         </div>

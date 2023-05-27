@@ -4,8 +4,8 @@ import "./Header.css";
 function Header(): JSX.Element {
     return (
         <div className="Header">
+			<h1 className={"head"}>The Best Coupons Web &trade;</h1>
             <AuthMenu />
-			<h1>The Best Coupons Web &trade;</h1>
         </div>
     );
 }

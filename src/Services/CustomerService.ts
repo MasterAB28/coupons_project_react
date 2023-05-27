@@ -14,20 +14,14 @@ import Customer from "../Models/Customer";
 
 class CustomerService{
     public async getAllCoupons(){
-        if (customerStore.getState().coupons.length == 0){
             const response = (await axios.get<Coupon[]>("http://localhost:8080/customer/coupons")).data;
             customerStore.dispatch(fetchCoupons(response))
             return response;
-        }
-        return customerStore.getState().coupons;
     }
     public async getCustomerCoupons(){
-        if (customerStore.getState().customerCoupons.length == 0){
             const response = (await axios.get<Coupon[]>("http://localhost:8080/customer/coupon")).data;
             customerStore.dispatch(getCustomerCoupons(response));
             return response;
-        }
-        return customerStore.getState().customerCoupons;
     }
     public async purchaseCoupon(coupon:Coupon){
         const response = (await axios.post<Coupon>("http://localhost:8080/customer/coupon",coupon)).data;

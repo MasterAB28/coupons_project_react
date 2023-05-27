@@ -4,7 +4,7 @@ import {NavLink, useNavigate, useParams} from "react-router-dom";
 import CompanyService from "../../../Services/CompanyService";
 import notificationService from "../../../Services/NotificationService";
 import Coupon from "../../../Models/Coupon";
-import {Button, Modal} from "react-bootstrap";
+import {Modal} from "react-bootstrap";
 
 function CouponDetails(): JSX.Element {
     const [coupon, setCoupon] = useState<Coupon>();
@@ -20,7 +20,7 @@ function CouponDetails(): JSX.Element {
             .then(()=>{
                 handleClose();
                 notificationService.success("coupon deleted!");
-                window.location.reload();
+                navigate("/company/coupons")
             })
             .catch(error => notificationService.error(error))
     }
@@ -34,12 +34,17 @@ function CouponDetails(): JSX.Element {
     },[])
     return (
         <div className="CouponDetails">
-            <NavLink to={"/coupons/"+coupon?.id}>
-                {coupon?.title}<br/>
-            </NavLink>
-            <img src={coupon?.image} alt={coupon?.title} /><br/>
-            <Button variant="danger" onClick={handleShow}>DELETE</Button>
-            <Button variant="warning" onClick={updateCoupon}>EDIT</Button>
+            <h3>{coupon?.title}</h3>
+            Description: {coupon?.description}<br/>
+            Start date: {coupon?.startDate.toString()}<br/>
+            End date: {coupon?.endDate.toString()}<br/>
+            Price: {coupon?.price}<br/>
+            Amount: {coupon?.amount}<br/>
+
+            {coupon?.image &&<><img src={coupon?.image} alt={coupon?.title} /><br/></> }
+            {!coupon?.image && <> <img src={'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png'} alt={coupon?.title} /><br/></>}
+            <button onClick={handleShow}>DELETE</button>
+            <button onClick={updateCoupon}>EDIT</button>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -47,12 +52,12 @@ function CouponDetails(): JSX.Element {
                 </Modal.Header>
                 <Modal.Body>Are you sure you want to delete {coupon?.title}</Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
+                    <button onClick={handleClose}>
                         No
-                    </Button>
-                    <Button variant="primary" onClick={deleteCoupon}>
+                    </button>
+                    <button onClick={deleteCoupon}>
                         YES
-                    </Button>
+                    </button>
                 </Modal.Footer>
             </Modal>
         </div>

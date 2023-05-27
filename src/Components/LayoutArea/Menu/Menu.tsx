@@ -15,18 +15,18 @@ function Menu(): JSX.Element {
     },[])
     return (
         <div className="Menu">
-			<NavLink to="/home">Home</NavLink><br/>
+			<NavLink to="/home">Home</NavLink>
             { authStore.getState().token && authStore.getState().clientType === "Administrator" && <>
-                    <NavLink to="/customers">Customers</NavLink><br/>
+                    <NavLink to="/customers">Customers</NavLink>
                     <NavLink to="/companies">Companies</NavLink>
                 </> }
             { authStore.getState().token && authStore.getState().clientType === "Company" && <>
-                    <NavLink to={"/company/coupons"}>Your Coupons</NavLink><br/>
+                    <NavLink to={"/company/coupons"}>Your Coupons</NavLink>
                     <NavLink to={"/companyDetails"}>Your details</NavLink>
                 </>}
             { authStore.getState().token && authStore.getState().clientType === "Customer" &&<>
-                <NavLink to={"/coupons"}>Our Coupons</NavLink><br/>
-                <NavLink to={"/customerCoupons"}>Your coupons</NavLink><br/>
+                <NavLink to={"/coupons"}>Our Coupons</NavLink>
+                <NavLink to={"/customerCoupons"}>Your coupons</NavLink>
                 <NavLink to={"/customerDetails"}>Your details</NavLink>
             </>}
 

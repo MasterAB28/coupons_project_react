@@ -28,7 +28,7 @@ function CompanyCard(props: CompanyProp): JSX.Element {
         navigate("/company/edit/" + props.company.id);
     }
     return (
-        <div className="CompanyCard">
+        <div className="CompanyCard box">
             <NavLink to={"/company/"+props.company.id}>
 			<h4> {props.company.name}<br/></h4>
             </NavLink>

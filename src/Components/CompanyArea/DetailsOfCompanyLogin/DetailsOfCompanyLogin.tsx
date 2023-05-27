@@ -18,7 +18,10 @@ function DetailsOfCompanyLogin(): JSX.Element {
     })
     return (
         <div className="DetailsOfCompanyLogin">
-            {company?.name}
+            <h4>Your company details:</h4>
+            Name: {company?.name}<br/>
+            Email: {company?.email}<br/>
+            Password: {company?.password}
         </div>
     );
 }

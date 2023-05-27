@@ -3,6 +3,8 @@ import authService from "../../../Services/AuthService";
 import { authStore } from "../../../Store/AuthState";
 import { useEffect, useState } from "react";
 import notificationService from "../../../Services/NotificationService";
+import "./AuthMenu.css";
+import {Button} from "react-bootstrap";
 
 
 function AuthMenu(): JSX.Element {
@@ -27,20 +29,17 @@ function AuthMenu(): JSX.Element {
             }
         ).catch(error=> notificationService.error(error));
     }
-    
+    const {pathname} = window.location;
+
 
     return (
         <div className="AuthMenu">
-            {
-                !token && 
-                <>
-                    <NavLink to={"/login"}>Login</NavLink>
-                </> ||
-                <>
-                    Hello {authStore.getState().name} <button onClick={logout}>Logout</button> 
-                </>
-            }
-			
+            {!token && pathname !== "/login" &&
+                   <> <NavLink to={"/login"}><Button variant={"primary"}>Login</Button></NavLink> </>|| token &&
+                <div>
+                    Hello {authStore.getState().name}
+                    <Button variant={"light"} className={"logout"} onClick={logout}>Logout</Button></div> }
+
         </div>
     );
         }

@@ -31,7 +31,7 @@ function CustomerCard(props: CustomerProps): JSX.Element {
         navigate("/customer/edit/"+props?.customer?.id)
     }
     return (
-        <div className="CustomerCard">
+        <div className="CustomerCard box">
             {authStore.getState().clientType === "Customer" && <h4>{(props?.customer?.firstName)+ " " + (props?.customer?.lastName)}</h4>}
             {authStore.getState().clientType ==="Administrator" &&
             <NavLink to={"/customer/"+props?.customer?.id}>

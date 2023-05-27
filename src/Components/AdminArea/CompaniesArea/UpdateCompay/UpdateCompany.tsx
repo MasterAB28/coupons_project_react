@@ -37,11 +37,12 @@ function UpdateCompany(): JSX.Element {
                 <input type="text"  disabled {...register("name")} /><br/>
                 <input type="email"   {...register("email", {
                 required:{value: true, message:"You must enter email"}
-                })} /><br/> 
+                })} /><br/>
+                    { formState.errors?.email?.message && <><span>{formState.errors?.email?.message}</span><br/></>}
                 <input type="password"  placeholder="Enter password here" {...register("password", {
                             required:{ value:true, message: "You must enter password"}
                         })} /><br/>
-                <span>{formState.errors?.password?.message}</span><br/>
+                    {formState.errors?.password?.message && <><span>{formState.errors?.password?.message}</span><br/></>}
                 <input type="submit" value="Update" />
             </form>
         </div>

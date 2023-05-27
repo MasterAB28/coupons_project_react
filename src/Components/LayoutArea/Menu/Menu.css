@@ -1,3 +1,10 @@
 .Menu {
-	
+    justify-content: center;
+    padding-top: 30px;
+    padding-bottom: 35px;
+}
+.Menu>a {
+    color: #121212;
+    font-size: 20px;
+    padding-left: 10px;
 }
