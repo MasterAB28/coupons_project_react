@@ -15,7 +15,7 @@ function CustomerData(): JSX.Element {
                 setCustomer(customer)
             })
             .catch(err=> notificationService.error(err))
-    })
+    },[])
     return (
         <div className="CustomerData">
             {<CustomerCard  customer={getCustomer}/>}

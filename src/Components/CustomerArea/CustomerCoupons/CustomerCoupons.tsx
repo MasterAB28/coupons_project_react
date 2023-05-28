@@ -46,7 +46,7 @@ function CustomerCoupons(): JSX.Element {
                 <option disabled={true} hidden value="">Select a category</option>
                 {categories.map((value,key)=> <option key={key}>{value}</option>)}
             </select></>}
-            {value === "Max Price" &&<>Enter max price: <input id={"PriceInput"} placeholder={"Max price"} type={"number"} min={0}/>
+            {value === "Max Price" &&<><br/>Enter max price: <input id={"PriceInput"} placeholder={"Max price"} type={"number"} min={0}/>
                 <button  type={"submit"} onClick={numChange}>Search</button>
             </>}<br/>
 

@@ -40,7 +40,9 @@ function CustomerCard(props: CustomerProps): JSX.Element {
             }
             <p>Email: {props?.customer?.email}</p>
             <p>Password: {props?.customer?.password}</p>
-            <p>coupons: {props?.customer?.coupons.map( c=> c.title)} </p>
+            <p>{authStore.getState().clientType==="Customer" && props?.customer?.coupons?.length === 0 && <>You haven't bought any coupons yet</> }</p>
+            <p>{authStore.getState().clientType==="Customer" && props?.customer?.coupons?.length === 1 && <>coupons: {props?.customer?.coupons.map( c=> c.title + ".")}</> }</p>
+            <p>{authStore.getState().clientType==="Customer" && props?.customer?.coupons?.length > 1 && <>coupons: {props?.customer?.coupons.map( c=> <p>{c.title}</p>)}</>}</p>
             {authStore.getState().clientType === "Administrator" &&<> <Button variant="danger" onClick={handleShow}>DELETE</Button>
                 <Button variant="warning" onClick={updateCustomer}>EDIT</Button>
 

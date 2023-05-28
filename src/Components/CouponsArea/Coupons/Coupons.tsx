@@ -22,7 +22,6 @@ function Coupons(): JSX.Element {
     function numChange () {
         const e = document.getElementById("PriceInput") as HTMLInputElement;
         const input = parseInt(e.value,10)
-        console.log(input)
         setNum(input);
     }
 
@@ -47,9 +46,10 @@ function Coupons(): JSX.Element {
                 <option disabled={true} hidden value="">Select a category</option>
                 {categories.map((value,key)=> <option key={key}>{value}</option>)}
             </select></>}
-            {value === "Max Price" &&<>Enter max price: <input id={"PriceInput"} placeholder={"Max price"} type={"number"} min={0}/>
+            {value === "Max Price" &&<><br/>Enter max price: <input id={"PriceInput"} placeholder={"Max price"} type={"number"} min={0}/>
             <button  type={"submit"} onClick={numChange}>Search</button>
             </>}<br/>
+
 
             {value==="All" && getCoupons.map((c=> <CouponCard key={c.id} coupon={c}/>))}
             {value === "Category" && categoryCoupons.map(c=> <CouponCard key={c.id} coupon={c}/>)}
