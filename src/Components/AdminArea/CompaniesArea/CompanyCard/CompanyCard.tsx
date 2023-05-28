@@ -5,6 +5,7 @@ import AdminService from "../../../../Services/AdminService";
 import notificationService from "../../../../Services/NotificationService";
 import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import {authStore} from "../../../../Store/AuthState";
 
 interface CompanyProp{
     company : Company;
@@ -16,7 +17,7 @@ function CompanyCard(props: CompanyProp): JSX.Element {
     const navigate = useNavigate();
 
     function deleteCompany(){
-        new AdminService().deleteCompany(props.company.id)
+        new AdminService().deleteCompany(props.company?.id)
         .then(()=>{
             handleClose();
             notificationService.success("Company deleted!");
@@ -25,15 +26,16 @@ function CompanyCard(props: CompanyProp): JSX.Element {
         .catch(error => notificationService.error(error))
     }
     function updateCompany(){
-        navigate("/company/edit/" + props.company.id);
+        navigate("/company/edit/" + props.company?.id);
     }
     return (
         <div className="CompanyCard box">
-            <NavLink to={"/company/"+props.company.id}>
-			<h4> {props.company.name}<br/></h4>
+            <NavLink to={"/company/"+props.company?.id}>
+			<h3> {props.company?.name}<br/></h3>
             </NavLink>
-            <p>email: {props.company.email}<br/></p>
-            <p>password: {props.company.password}</p>
+            <p>email: {props.company?.email}<br/></p>
+            <p>password: {props.company?.password}</p>
+            {authStore.getState().clientType === "Administrator" && <>
             <Button variant="danger" onClick={handleShow}>DELETE</Button>
             <Button variant="warning" onClick={updateCompany}>EDIT</Button>
 
@@ -50,7 +52,8 @@ function CompanyCard(props: CompanyProp): JSX.Element {
                     YES
                 </Button>
                 </Modal.Footer>
-      </Modal>
+      </Modal></>
+}
         </div>
     );
 }

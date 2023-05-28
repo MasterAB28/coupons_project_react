@@ -53,6 +53,7 @@ function CouponCard(props : CouponProp): JSX.Element {
             .then(()=>{
                 notificationService.success("Purchase success");
                 setRefresh(true)
+                navigate("/customerCoupons")
             })
             .catch(err=>notificationService.error(err));
     }

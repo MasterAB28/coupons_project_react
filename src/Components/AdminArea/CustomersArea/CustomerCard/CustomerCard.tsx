@@ -35,7 +35,7 @@ function CustomerCard(props: CustomerProps): JSX.Element {
             {authStore.getState().clientType === "Customer" && <h4>{(props?.customer?.firstName)+ " " + (props?.customer?.lastName)}</h4>}
             {authStore.getState().clientType ==="Administrator" &&
             <NavLink to={"/customer/"+props?.customer?.id}>
-			<h4>Name: {(props?.customer?.firstName)+ " " + (props?.customer?.lastName)}</h4>
+			<h3>Name: {(props?.customer?.firstName)+ " " + (props?.customer?.lastName)}</h3>
             </NavLink>
             }
             <p>Email: {props?.customer?.email}</p>

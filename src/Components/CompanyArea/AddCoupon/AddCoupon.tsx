@@ -41,7 +41,8 @@ function AddCoupon(): JSX.Element {
         reader.onerror = reject;
     });
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        toBase64(event.target.files[0]).then(base64 => setImage(base64 as string))
+        toBase64(event.target.files[0]).then(base64 => {setImage(base64 as string);
+        })
     }
 
     return (

@@ -37,8 +37,8 @@ function CustomerDetails(): JSX.Element {
 			<h4>Name: {customer?.firstName} {customer?.lastName}</h4><br/>
             Email: {customer?.email}<br/>
             Password: {customer?.password}<br/>
-            Coupons: {customer?.coupons.length === 0 && <>The customer has not bought any coupons yet<br/></>}
-            {customer?.coupons.length > 0 && <>{customer?.coupons.map(c=> c.title)}<br/></>}
+            Coupons: {customer?.coupons?.length === 0 && <>The customer has not bought any coupons yet<br/></>}
+            {customer?.coupons?.length > 0 && <>{customer?.coupons?.map(c=> c.title)}<br/></>}
 
             <Button variant="danger" onClick={handleShow}>DELETE</Button>
             <Button variant="warning" onClick={updateCustomer}>EDIT</Button>

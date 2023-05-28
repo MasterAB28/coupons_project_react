@@ -3,6 +3,7 @@ import CompanyService from "../../../Services/CompanyService";
 import notificationService from "../../../Services/NotificationService";
 import {useEffect, useState} from "react";
 import Company from "../../../Models/Company";
+import CompanyCard from "../../AdminArea/CompaniesArea/CompanyCard/CompanyCard";
 
 
 
@@ -18,10 +19,7 @@ function DetailsOfCompanyLogin(): JSX.Element {
     })
     return (
         <div className="DetailsOfCompanyLogin">
-            <h4>Your company details:</h4>
-            Name: {company?.name}<br/>
-            Email: {company?.email}<br/>
-            Password: {company?.password}
+            {<CompanyCard key={company?.id} company={company}/>}
         </div>
     );
 }

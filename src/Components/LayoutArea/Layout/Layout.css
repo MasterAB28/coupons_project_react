@@ -2,7 +2,7 @@
 	display: grid;
     height: 100%;
     grid-template-columns: 100%;
-    grid-template-rows: 11.2% 8% 75% 10%;
+    grid-template-rows: 15% 10% 75% 10%;
 }
 
 

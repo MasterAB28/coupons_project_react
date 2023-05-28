@@ -5,7 +5,7 @@ import Customer from "../Models/Customer";
 
 class AdminService{
     public async getAllCompanies(){
-        if(adminStore.getState().companies.length == 0){
+        if(adminStore.getState().companies.length === 0){
             const response = await axios.get<Company[]>('http://localhost:8080/admin/companies');
             adminStore.dispatch(fetchCompanies(response.data));
             return response.data;
@@ -35,7 +35,7 @@ class AdminService{
         return response;
     }
     public async getAllCustomers(){
-        if(adminStore.getState().customers.length == 0){
+        if(adminStore.getState().customers.length === 0){
             const response = await axios.get<Customer[]>('http://localhost:8080/admin/customers');
             adminStore.dispatch(fetchCustomers(response.data));
             return response.data;

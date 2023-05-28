@@ -1,7 +1,7 @@
 body, html, #root{
-  margin: 0;
-  height: 100%;
-  background: #e1e1e1;
+    margin: 0;
+    height: 100%;
+    background: #e1e1e1;
     font-family: Calibri;
 }
 
@@ -13,4 +13,25 @@ body, html, #root{
     padding: 10px;
     margin: 10px;
     background-color: white;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+@media (min-width: 768px) {
+    /* Styles for medium-sized screens and above */
+    .container {
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 1024px) {
+    /* Styles for large screens and above */
+    .container {
+        justify-content: space-around;
+    }
 }
