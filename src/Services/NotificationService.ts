@@ -1,5 +1,5 @@
 import { wait } from '@testing-library/user-event/dist/utils';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -8,6 +8,7 @@ class NotificationService{
     public success(msg:string){
         toast.success(msg)
     }
+
     public error(err:any){
         if(typeof err == "string"){                           
             toast.error(err);
@@ -15,7 +16,7 @@ class NotificationService{
             toast.error(err.response.data);
                 if (err.response.status === 401){
                     localStorage.removeItem('token');
-                    window.location.href = '/login';
+                    wait(2000).then(()=>{window.location.href = '/login'}).catch(err=>toast.error(err))
             }
         } else {                                          
             toast.error(err.message);

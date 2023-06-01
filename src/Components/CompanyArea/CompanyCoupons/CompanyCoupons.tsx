@@ -37,6 +37,8 @@ function CompanyCoupons(): JSX.Element {
     .catch(err=>(notificationService.error(err)))
     },[])
 
+    const categoryCoupons = getCoupons.filter(c=> c.category === category);
+    const maxPriceCoupons = getCoupons.filter(c=> c.price <= num)
     return (
         <div className="Coupons">
             Filter: <select defaultValue={value} onChange={handleChange}>
@@ -53,7 +55,9 @@ function CompanyCoupons(): JSX.Element {
                     <Button variant={"primary"} >Add new Coupon </Button>
                 </NavLink><br/>
 
-			{getCoupons.map(c=><CouponCard key={c.id} coupon={c}/>)}
+            {value==="All" && getCoupons.map((c=> <CouponCard key={c.id} coupon={c}/>))}
+            {value === "Category" && categoryCoupons.map(c=> <CouponCard key={c.id} coupon={c}/>)}
+            {value === "Max Price" && maxPriceCoupons.map((c=> <CouponCard key={c.id} coupon={c}/>))}
         </div>
     );
 }

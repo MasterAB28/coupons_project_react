@@ -1,3 +1,8 @@
 .Home {
     padding: 10px;
 }
+.Home>iframe{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

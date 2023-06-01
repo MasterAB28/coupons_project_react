@@ -4,6 +4,7 @@ import Company from "../../../../Models/Company";
 import AdminService from "../../../../Services/AdminService";
 import notificationService from "../../../../Services/NotificationService";
 import "./AddCompany.css";
+import {Button, Card, Form} from "react-bootstrap";
 
 function AddCompany(): JSX.Element {
     const {register, handleSubmit,formState}=useForm<Company>();
@@ -20,23 +21,24 @@ function AddCompany(): JSX.Element {
     }
     return (
         <div className="AddCompany">
-				<form onSubmit={handleSubmit(sendCompany)}>
+				<Form onSubmit={handleSubmit(sendCompany)}>
+                    <Card>
                 <h3>Add new Company</h3>
-                <input type="text"placeholder="Enter name here"{...register("name",{
-                    required:{value:true,message:"Required field"}
-                })} /><br/>
-                    {formState.errors?.name?.message && <><span>{formState.errors?.name?.message}</span><br/></>}
-                <input type="email" placeholder="Enter email here"{...register("email",{
-                    required:{value:true,message:"Required field"}
-                })} /><br/>
-                    { formState.errors?.email?.message && <><span>{formState.errors?.email?.message}</span><br/></>}
-                <input type="password" placeholder="Enter password here"{...register("password",{
-                    required:{value:true,message:"Required field"}
-                })} /><br/>
-                    {formState.errors?.password?.message && <><span>{formState.errors?.password?.message}</span><br/></>}
-                <button name="add" type="submit">Add Company</button>
-
-            </form>
+                <Form.Control type="text"placeholder="Enter name here"{...register("name",{
+                    required:{value:true,message:"You must enter name"}
+                })} />
+                    {formState.errors?.name?.message && <><span>{formState.errors?.name?.message}</span></>}
+                <Form.Control type="email" placeholder="Enter email here"{...register("email",{
+                    required:{value:true,message:"You must enter email"}
+                })} />
+                    { formState.errors?.email?.message && <><span>{formState.errors?.email?.message}</span></>}
+                <Form.Control type="password" placeholder="Enter password here"{...register("password",{
+                    required:{value:true,message:"You must enter password"}
+                })} />
+                    {formState.errors?.password?.message && <><span>{formState.errors?.password?.message}</span></>}
+                <Button variant={"primary"} type="submit">Add Company</Button>
+                    </Card>
+            </Form>
         </div>
     );
 }

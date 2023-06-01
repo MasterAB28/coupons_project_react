@@ -6,6 +6,7 @@ import notificationService from "../../../../Services/NotificationService";
 import Customer from "../../../../Models/Customer";
 import CustomerCard from "../CustomerCard/CustomerCard";
 import { NavLink } from "react-router-dom";
+import {Button} from "react-bootstrap";
 
 function Customers(): JSX.Element {
     
@@ -24,7 +25,7 @@ function Customers(): JSX.Element {
         <div className="Customers">
             <div className="addBtn">
                 <NavLink to={"/customer/add"}>
-                    <button>Add new customer </button>
+                    <Button variant={"primary"}>Add new customer </Button>
                 </NavLink>
             </div>
 			{getCustomers.map(c=> <CustomerCard key={c.id} customer={c} />)}

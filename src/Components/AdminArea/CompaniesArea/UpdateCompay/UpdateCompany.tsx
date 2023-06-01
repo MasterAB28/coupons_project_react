@@ -1,10 +1,11 @@
-import { Form, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./UpdateCompany.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Company from "../../../../Models/Company";
 import AdminService from "../../../../Services/AdminService";
 import { useForm } from "react-hook-form";
 import notificationService from "../../../../Services/NotificationService";
+import {Button, Card, Form} from "react-bootstrap";
 
 function UpdateCompany(): JSX.Element {
 
@@ -32,19 +33,21 @@ function UpdateCompany(): JSX.Element {
     
     return (
         <div className="UpdateCompany">
-				<form onSubmit={handleSubmit(sendCompany)}>
+				<Form onSubmit={handleSubmit(sendCompany)}>
+                    <Card>
                 <h2>Update Company:</h2>
-                <input type="text"  disabled {...register("name")} /><br/>
-                <input type="email"   {...register("email", {
+                <Form.Control type="text"  disabled {...register("name")} />
+                <Form.Control type="email"   {...register("email", {
                 required:{value: true, message:"You must enter email"}
-                })} /><br/>
+                })} />
                     { formState.errors?.email?.message && <><span>{formState.errors?.email?.message}</span><br/></>}
-                <input type="password"  placeholder="Enter password here" {...register("password", {
+                <Form.Control type="password"  placeholder="Enter password here" {...register("password", {
                             required:{ value:true, message: "You must enter password"}
-                        })} /><br/>
+                        })} />
                     {formState.errors?.password?.message && <><span>{formState.errors?.password?.message}</span><br/></>}
-                <input type="submit" value="Update" />
-            </form>
+                <Button variant={"primary"} type="submit" >Update company</Button >
+                    </Card>
+            </Form>
         </div>
     );
 }

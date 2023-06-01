@@ -15,6 +15,8 @@ function CompanyCard(props: CompanyProp): JSX.Element {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const navigate = useNavigate();
+    const { pathname } = window.location;
+
 
     function deleteCompany(){
         new AdminService().deleteCompany(props.company?.id)
@@ -30,9 +32,12 @@ function CompanyCard(props: CompanyProp): JSX.Element {
     }
     return (
         <div className="CompanyCard box">
+            {pathname !== "/companies" && <h3>  {props.company?.name}</h3>}
+            {pathname === "/companies" &&
             <NavLink to={"/company/"+props.company?.id}>
 			<h3> {props.company?.name}<br/></h3>
             </NavLink>
+            }
             <p>email: {props.company?.email}<br/></p>
             <p>password: {props.company?.password}</p>
             {authStore.getState().clientType === "Administrator" && <>

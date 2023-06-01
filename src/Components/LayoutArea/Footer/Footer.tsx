@@ -3,9 +3,9 @@ import "./Footer.css";
 function Footer(): JSX.Element {
     return (
         <div className="Footer">
-			Hello! <br/>
-            This is our Coupons project to show you our abilites and knowledge in java,spring,react and Javascript!<br/>
-            Thank you for watching our project!
+			Thanks for watching!<br/>
+           <a href={"https://github.com/MasterAB28"}> Github link for more projects </a><br/>
+            <a href={"https://www.linkedin.com/in/aviad-barel-71165926a/?trk=public-profile-join-page"}>Linkedin</a>
         </div>
     );
 }

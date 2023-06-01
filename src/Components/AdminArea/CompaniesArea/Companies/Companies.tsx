@@ -5,6 +5,7 @@ import AdminService from "../../../../Services/AdminService";
 import notificationService from "../../../../Services/NotificationService";
 import CompanyCard from "../CompanyCard/CompanyCard";
 import { NavLink, Navigate } from "react-router-dom";
+import {Button} from "react-bootstrap";
 
 function Companies(): JSX.Element {
     
@@ -21,7 +22,7 @@ function Companies(): JSX.Element {
         <div className="Companies">
             <div className="addBtn">
                 <NavLink to={"/company/add"}>
-                    <button>Add new Company </button>
+                    <Button variant={"primary"}>Add new Company </Button>
                 </NavLink>
             </div>
 			{getCompanies.map(c =><CompanyCard key={c.id} company={c}/>)}

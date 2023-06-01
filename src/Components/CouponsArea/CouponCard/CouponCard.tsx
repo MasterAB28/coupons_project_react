@@ -21,10 +21,12 @@ function CouponCard(props : CouponProp): JSX.Element {
     const navigate = useNavigate();
     const [refresh,setRefresh] = useState(true);
     const [customerCoupons , setCustomerCoupons] = useState<Coupon[]>([]);
+    const { pathname } = window.location;
+
 
 
     function deleteCoupon(){
-        new CompanyService().deleteCoupon(props.coupon.id)
+        new CompanyService().deleteCoupon(props.coupon?.id)
             .then(()=>{
                 handleClose();
                 notificationService.success("coupon deleted!");
@@ -33,7 +35,7 @@ function CouponCard(props : CouponProp): JSX.Element {
             .catch(error => notificationService.error(error))
     }
     function updateCoupon(){
-        navigate("/coupon/edit/" + props.coupon.id);
+        navigate("/coupon/edit/" + props.coupon?.id);
     }
 
 
@@ -68,20 +70,20 @@ function CouponCard(props : CouponProp): JSX.Element {
     }
     return (
         <div className="CouponCard box">
-            {authStore.getState().clientType === "Company" &&<>Title: <NavLink to={"/coupons/" + props.coupon.id}>{props.coupon.title}<br/></NavLink></>}
-            {authStore.getState().clientType === "Customer" &&<><h4>Title: {props.coupon.title}</h4></>}
-            Description: {props.coupon.description}<br/>
-            Start date: {props.coupon.startDate.toString()}<br/>
-            End date: {props.coupon.endDate.toString()}<br/>
-            Price: {props.coupon.price}<br/>
-            Amount: {props.coupon.amount}<br/>
-            {props.coupon.image &&<><img src={props.coupon.image} alt={props.coupon.title} /><br/></> }
-            {!props.coupon.image && <> <img src={'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png'} alt={props.coupon.title} /><br/></>}
+            {authStore.getState().clientType === "Company" && pathname === "/company/coupons" &&<><h4>Title: <NavLink to={"/coupons/" + props.coupon?.id}>{props.coupon?.title}</NavLink></h4></>}
+            {pathname !== "/company/coupons" &&<><h4>Title: {props.coupon?.title}</h4></>}
+            Description: {props.coupon?.description}<br/>
+            Start date: {props.coupon?.startDate.toString()}<br/>
+            End date: {props.coupon?.endDate.toString()}<br/>
+            Price: {props.coupon?.price}$<br/>
+            Amount: {props.coupon?.amount}<br/>
+            {props.coupon?.image &&<><img src={props.coupon?.image} alt={props.coupon.title} /><br/></> }
+            {!props.coupon?.image && <> <img src={'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png'} alt={props.coupon?.title} /><br/></>}
 
-            {authStore.getState().clientType === "Customer" && !customerCoupons.some(c=>c.id === props.coupon.id) && <>
+            {authStore.getState().clientType === "Customer" && !customerCoupons.some(c=>c.id === props.coupon?.id) && <>
                 <Button variant={"success"} onClick={purchaseCoupon}>Purchase coupon</Button>
             </> ||
-            customerCoupons.some(c=> c.id == props.coupon.id) &&
+            customerCoupons.some(c=> c.id == props.coupon?.id) &&
             <>
                 <Button variant={"danger"} onClick={deletePurchaseCoupon}>Delete purchase</Button>
             </>}

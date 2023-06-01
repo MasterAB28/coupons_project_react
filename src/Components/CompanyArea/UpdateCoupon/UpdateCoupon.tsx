@@ -6,6 +6,7 @@ import React, {SetStateAction, useEffect, useState} from "react";
 import CompanyService from "../../../Services/CompanyService";
 import notificationService from "../../../Services/NotificationService";
 import Categories from "../../../Models/Categories";
+import {Button, Card, Form} from "react-bootstrap";
 
 
 function UpdateCoupon(): JSX.Element {
@@ -62,44 +63,46 @@ function UpdateCoupon(): JSX.Element {
     }
     return (
         <div className="UpdateCoupon">
-            <form onSubmit={handleSubmit(sendCoupon)}>
-                <h2>Update Coupon:</h2>
-                <select id="category" defaultValue={value} onChange={handleChange}  {...register("category", {
-                    required: { value: true, message: "category is required" }
-                })}>
-                    <option disabled={true} hidden value="">Select a category</option>
-                    {categories.map((value,key)=> <option key={key}>{value}</option>)}
-                </select><br/>
-                <span>{formState.errors?.price?.message}</span><br/>
-                <input type="text" placeholder=" title " {...register("title", {
-                    required: {value:true, message:"title is required"}
-                })} /><br/>
-                <span>{formState.errors?.price?.message}</span><br/>
-                <input type="text" placeholder=" description " {...register("description",{
-                    required:{value:true,message:"description is required"}
-                })} /><br/>
-                <span>{formState.errors?.price?.message}</span><br/>
-                <input type="date" placeholder="start-date" {...register("startDate",{
-                    required:{value: true, message:"start date is required"}
-                })} min={getCurrentDate()} /><br/>
-                <span>{formState.errors?.price?.message}</span><br/>
-                <input type="date" placeholder="end-date"{...register("endDate",{
-                    required:{value:true, message:"End date is required"},
-                })} min={getCurrentDate()}/><br/>
-                <span>{formState.errors?.price?.message}</span><br/>
-                <input type="number" placeholder="amount"{...register("amount",{
-                    required:{value:true,message:"required field!"},
-                    min:{value:1,message:"Amount must be above 0"}
-                })} /><br/>
-                <span>{formState.errors?.amount?.message}</span><br/>
-                <input type="number" placeholder="price"{...register("price",{
-                    required:{value:true,message:"required field!"},
-                    min:{value:0,message:"Price must be above than 0"}
-                })} /><br/>
-                <span>{formState.errors?.price?.message}</span><br/>
-                <input type="file" id="image" name="image" accept="image/*" onChange={handleFileChange}/><br/>
-                <input type="submit" value="Update Coupon" /><br/>
-            </form>
+            <Form onSubmit={handleSubmit(sendCoupon)}>
+                <Card>
+                    <h2>Update coupon:</h2>
+                    <select className={"form-select"} id="category" defaultValue={value} onChange={handleChange}  {...register("category", {
+                        required: { value: true, message: "You must enter category" }
+                    })}>
+                        <option disabled={true} hidden value="">Select a category</option>
+                        {categories.map((value,key)=> <option key={key}>{value}</option>)}
+                    </select>
+                    {formState.errors?.category?.message && <><p>{formState.errors?.category?.message}</p></>}
+                    <Form.Control type="text" placeholder="Title" {...register("title", {
+                        required: {value:true, message:"You must enter title"}
+                    })} />
+                    {formState.errors?.title?.message && <><span>{formState.errors?.title?.message}</span></>}
+                    <Form.Control type="text" placeholder="Description" {...register("description",{
+                        required:{value:true,message:"You must enter description"}
+                    })} />
+                    {formState.errors?.description?.message && <><span>{formState.errors?.description?.message}</span></>}
+                    <Form.Control type="date" placeholder="Start-date" {...register("startDate",{
+                        required:{value: true, message:"You must enter start date"}
+                    })} min={getCurrentDate()} />
+                    {formState.errors?.startDate?.message && <><span>{formState.errors?.endDate?.message}</span></>}
+                    <Form.Control type="date" placeholder="End-date"{...register("endDate",{
+                        required:{value:true, message:"You must enter end date"},
+                    })} min={getCurrentDate()}/>
+                    {formState.errors?.endDate?.message && <><span>{formState.errors?.endDate?.message}</span></>}
+                    <Form.Control type="number" placeholder="Amount"{...register("amount",{
+                        required:{value:true,message:"You must enter amount"},
+                        min:{value:1,message:"Amount must be above 0"}
+                    })} />
+                    {formState.errors?.amount?.message && <><span>{formState.errors?.amount?.message}</span></>}
+                    <Form.Control type="number" placeholder="Price"{...register("price",{
+                        required:{value:true,message:"You must enter price"},
+                        min:{value:0,message:"Price must be above than 0"}
+                    })} />
+                    {formState.errors?.price?.message && <><span>{formState.errors?.price?.message}</span></>}
+                    <Form.Control type="file" id="image" name="image" accept="image/*" onChange={handleFileChange}/>
+                    <Button variant={"primary"} type="submit">Update coupon</Button>
+                </Card>
+            </Form>
         </div>
     );
 }

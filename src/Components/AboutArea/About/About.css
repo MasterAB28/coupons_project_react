@@ -1,0 +1,25 @@
+.About{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 850px;
+    height: 450px;
+    display: inline-block;
+    border: solid rgb(172, 20, 20) 2px;
+    margin: 50px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow:5px 5px 5px;
+
+
+    transition: all 0.5s;
+
+}
+.About>span{
+    text-align: left;
+}
+.About>h3{
+    text-align: right;
+
+}

@@ -1,3 +1,6 @@
 .CustomerCard {
 	
 }
+.CustomerCard>button{
+    margin: 10px;
+}

@@ -1,4 +1,7 @@
 .CompanyCard {
 	
 }
+.CompanyCard>button{
+    margin: 10px;
+}
 

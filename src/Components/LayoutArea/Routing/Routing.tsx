@@ -19,12 +19,14 @@ import CouponDetails from "../../CouponsArea/CouponDetails/CouponDetails";
 import CustomerCoupons from "../../CustomerArea/CustomerCoupons/CustomerCoupons";
 import CustomerData from "../../CustomerArea/CustomerData/CustomerData";
 import Coupons from "../../CouponsArea/Coupons/Coupons";
+import About from "../../AboutArea/About/About";
 
 function Routing(): JSX.Element {
     return (
         <div className="Routing">
             <Routes>
-                <Route path="/home" element={<Home/>}/> 
+                <Route path="/home" element={<Home/>}/>
+                <Route path="/about" element={<About/>}/>
                 <Route path="/login" element={<Login />} />
                 <Route path="/coupons" element={<Coupons/>}/>
                 <Route path="/customers" element={<Customers/>} />

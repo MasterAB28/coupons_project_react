@@ -5,6 +5,7 @@ import AdminService from "../../../../Services/AdminService";
 import notificationService from "../../../../Services/NotificationService";
 import "./CustomerDetails.css";
 import { Button, Modal } from "react-bootstrap";
+import CustomerCard from "../CustomerCard/CustomerCard";
 
 function CustomerDetails(): JSX.Element {
     const [customer,setCustomer]=useState<Customer>();
@@ -34,29 +35,7 @@ function CustomerDetails(): JSX.Element {
     }
     return (
         <div className="CustomerDetails">
-			<h4>Name: {customer?.firstName} {customer?.lastName}</h4><br/>
-            Email: {customer?.email}<br/>
-            Password: {customer?.password}<br/>
-            Coupons: {customer?.coupons?.length === 0 && <>The customer has not bought any coupons yet<br/></>}
-            {customer?.coupons?.length > 0 && <>{customer?.coupons?.map(c=> c.title)}<br/></>}
-
-            <Button variant="danger" onClick={handleShow}>DELETE</Button>
-            <Button variant="warning" onClick={updateCustomer}>EDIT</Button>
-
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                <Modal.Title>Warning!</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Are you sure you want to delete {customer?.firstName} {customer?.lastName}</Modal.Body>
-                <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                    No
-                </Button>
-                <Button variant="primary" onClick={deleteCustomer}>
-                    YES
-                </Button>
-                </Modal.Footer>
-      </Modal>
+            {<CustomerCard key={customer?.id} customer={customer}/>}
         </div>
         
     );

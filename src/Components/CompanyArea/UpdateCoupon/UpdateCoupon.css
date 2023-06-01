@@ -1,3 +1,13 @@
 .UpdateCoupon {
-	
+    margin: 10px auto auto;
+    width: 500px;
+    text-align: center;
+}
+.UpdateCoupon .card{
+    padding:  5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+    border-radius: 15px;
+}
+.form-control,.form-select, button {
+    margin: 10px 0;
 }
